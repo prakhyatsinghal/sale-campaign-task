@@ -29,7 +29,7 @@ public class AppDataInitializer implements CommandLineRunner {
         Campaign campaign1 = new Campaign();
 
         campaign1.setStartDate(LocalDate.of(2023, 8, 1));
-        campaign1.setEndDate(LocalDate.of(2023, 8, 10));
+        campaign1.setEndDate(LocalDate.of(2023, 8, 20));
         campaign1.setTitle("Summer Sale");
 
         List<CampaignDiscount> campaignDiscounts1 = new ArrayList<>();
@@ -62,6 +62,19 @@ public class AppDataInitializer implements CommandLineRunner {
         campaignDiscounts3.add(new CampaignDiscount("efgh5678", 20));
         campaign3.setCampaignDiscounts(campaignDiscounts3);
         campaignRepository.save(campaign3);
+
+        Campaign campaign4 = new Campaign();
+
+        campaign4.setStartDate(LocalDate.of(2023, 10, 2));
+        campaign4.setEndDate(LocalDate.of(2023, 11, 1));
+        campaign4.setTitle("Diwali Sale");
+
+        List<CampaignDiscount> campaignDiscounts4 = new ArrayList<>();
+
+        campaignDiscounts4.add(new CampaignDiscount("ijkl9012", 25));
+        campaignDiscounts4.add(new CampaignDiscount("mnop3456", 30));
+        campaign4.setCampaignDiscounts(campaignDiscounts4);
+        campaignRepository.save(campaign4);
     }
 
     private void initializeProducts() {
@@ -82,7 +95,23 @@ public class AppDataInitializer implements CommandLineRunner {
         product2.setCurrentPrice(400);
         product2.setDiscount(20.0);
         product2.setInventory(5);
-        productRepository.saveAll(Arrays.asList(product1, product2));
+
+        Product product3 = new Product();
+
+        product3.setId("ijkl9012");
+        product3.setMrp(800);
+        product3.setCurrentPrice(700);
+        product3.setDiscount(12.5);
+        product3.setInventory(8);
+
+        Product product4 = new Product();
+
+        product4.setId("mnop3456");
+        product4.setMrp(1200);
+        product4.setCurrentPrice(1000);
+        product4.setDiscount(16.66);
+        product4.setInventory(15);
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4));
     }
 
     @Override

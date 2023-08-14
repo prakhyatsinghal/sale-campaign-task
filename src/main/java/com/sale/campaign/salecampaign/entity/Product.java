@@ -1,35 +1,28 @@
 package com.sale.campaign.salecampaign.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.*;
 import java.util.List;
+
+import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class Product {
     @Id
-    private String id;
-    private double mrp;
-    private double currentPrice;
-    private double discount;
-    private int inventory;
-
-    @OneToMany(cascade = CascadeType.ALL)
+    private String                 id;
+    private double                 mrp;
+    private double                 currentPrice;
+    private double                 standardPrice;
+    private double                 discount;
+    private int                    inventory;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CampaignDiscount> campaignDiscounts;
 
-    public String getId() {
-        return id;
+    public List<CampaignDiscount> getCampaignDiscounts() {
+        return campaignDiscounts;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public double getMrp() {
-        return mrp;
-    }
-
-    public void setMrp(double mrp) {
-        this.mrp = mrp;
+    public void setCampaignDiscounts(List<CampaignDiscount> campaignDiscounts) {
+        this.campaignDiscounts = campaignDiscounts;
     }
 
     public double getCurrentPrice() {
@@ -48,6 +41,14 @@ public class Product {
         this.discount = discount;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public int getInventory() {
         return inventory;
     }
@@ -56,13 +57,20 @@ public class Product {
         this.inventory = inventory;
     }
 
-    public List<CampaignDiscount> getCampaignDiscounts() {
-        return campaignDiscounts;
+    public double getMrp() {
+        return mrp;
     }
 
-    public void setCampaignDiscounts(List<CampaignDiscount> campaignDiscounts) {
-        this.campaignDiscounts = campaignDiscounts;
+    public void setMrp(double mrp) {
+        this.mrp = mrp;
     }
 
+    public double getStandardPrice() {
+        return standardPrice;
+    }
+
+    public void setStandardPrice(double standardPrice) {
+        this.standardPrice = standardPrice;
+    }
 }
 

@@ -1,8 +1,8 @@
 package com.sale.campaign.salecampaign.service;
 
+import com.sale.campaign.salecampaign.entity.PaginatedProductResponse;
 import com.sale.campaign.salecampaign.entity.Product;
 import com.sale.campaign.salecampaign.entity.ProductPriceSnapshot;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ public interface ProductService {
 
     public List<ProductPriceSnapshot> getProductPricingHistory(String productId);
 
-    public Page<Product> getPaginatedProducts(int page, int pageSize);
+    public PaginatedProductResponse getPaginatedProducts(int page, int pageSize);
+    void adjustPricesForActiveCampaigns(List<Product> products);
 
     }

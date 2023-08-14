@@ -2,8 +2,8 @@ package com.sale.campaign.salecampaign.controller;
 
 import java.util.List;
 
+import com.sale.campaign.salecampaign.entity.PaginatedProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,20 +22,11 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Product>> getPaginatedProducts(
+    public ResponseEntity<PaginatedProductResponse> getPaginatedProducts(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize) {
-
-        Page<Product> productsPage = productService.getPaginatedProducts(page, pageSize);
-
-        return ResponseEntity.ok(productsPage);
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-
-        return ResponseEntity.ok(products);
+        PaginatedProductResponse response = productService.getPaginatedProducts(page, pageSize);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/pricing-history/{productId}")
